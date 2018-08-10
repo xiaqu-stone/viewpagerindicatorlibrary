@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        resConfigs "zh"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.ext.dependencies.supportappcompatV7
+    implementation rootProject.ext.dependencies.recyclerview
+}
+
+
+ext {
+    bintrayRepo = 'dsq'
+    bintrayName = 'viewpagerindicatorlibrary'
+
+    publishedGroupId = 'com.stone.kuainiugroup'
+    libraryName = 'viewpagerindicatorlibrary'
+    artifact = 'viewpagerindicatorlibrary'
+
+    libraryVersion = '1.0.0'
+
+    libraryDescription = '三方库的再打包'
+
+    siteUrl = 'https://github.com/xiaqu-stone/viewpagerindicatorlibrary'
+    gitUrl = 'https://github.com/xiaqu-stone/viewpagerindicatorlibrary.git'
+
+    developerId = 'stone'
+    developerName = 'xiaqu-stone'
+    developerEmail = 'stone.xiaqu@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: "../install.gradle"
+apply from: "../bintray.gradle"
